@@ -1,0 +1,41 @@
+<ion-view view-title="婚礼精选">
+	<ion-content>
+		<div class="list card" ng-repeat="post in posts">
+
+		  <div class="item item-avatar">
+		    <img ng-src="{{post.user.logo_url}}">
+		    <h2>{{post.user.name}}</h2>
+		    <p>{{post.user.location}}</p>
+		  </div>
+
+		  <div class="item item-image">
+		    <img ng-src="{{post.cover.image_url}}!320x280">
+		  </div>
+
+		  <div class="item item-body">
+		  		<h2 class="title">{{post.title}}</h2>
+				<p>
+					{{post.description}}
+				</p>
+			</div>
+
+			<div class="item tabs tabs-secondary tabs-icon-left">
+				<a class="tab-item" href="#">
+					<i class="icon ion-thumbsup"></i>
+					Like
+				</a>
+				<a class="tab-item" href="#">
+					<i class="icon ion-chatbox"></i>
+					Comment
+				</a>
+				<a class="tab-item" href="#">
+					<i class="icon ion-share"></i>
+					Share
+				</a>
+			</div>
+
+		</div>
+		<ion-infinite-scroll on-infinite="loadMore()" distance="10%" icon="ion-loading-c" >
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
