@@ -16,7 +16,7 @@ angular.module('starter.services', ['ngResource'])
 				params: {
 					category: 'featured',
 					page: 1,
-					pageSize: 10,
+					pagesize: 10,
 					mdrender: true
 				},
 				tmeout: 20000
