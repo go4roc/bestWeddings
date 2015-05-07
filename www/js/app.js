@@ -40,6 +40,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
     
+    .state('app.post', {
+        url: "/post/:id",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/post.html",
+                controller: 'PostCtrl'
+            }
+        }
+    })
+
     .state('app.search', {
         url: "/search",
         views: {

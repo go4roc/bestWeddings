@@ -14,22 +14,19 @@ angular.module('starter.services', ['ngResource'])
 			query: {
 				method: 'get',
 				params: {
-					category: 'featured',
 					page: 1,
-					pagesize: 10,
-					mdrender: true
+					pagesize: 10
 				},
 				tmeout: 20000
 			}
 		}
 	);
 
-	var getPosts = function(category, page, callback) {
+	var getPosts = function(page, callback) {
 		return resource.query({
-			category: category,
 			page: page
 		}, function(result){
-			$log.debug('get posts category: ', category, 'page:', page, 'data:', result.data);
+			$log.debug('get posts result:', result);
 
 			return callback & callback(result);
 		});
@@ -37,25 +34,22 @@ angular.module('starter.services', ['ngResource'])
 
 	return {
 		refresh: function(){
-			return getPosts(category, 1, function(result){
+			return getPosts(1, function(result){
 				nextPage = 2;
-				hasNextPage = true;
-				posts = result.data;
+				hasNextPage = result.hasMore;
+				posts = result.posts;
 			})
 		},
 		pagination: function() {
-			return getPosts(category, nextPage, function(result){
-				if (result.posts.length < 10) {
-					$log.debug(' data length', result.posts.length);
-					hasNextPage = false;
-				}
+			return getPosts(nextPage, function(result){
+				hasNextPage = result.hasMore;
 				nextPage++;
-				posts = posts.concat(result.items);
+				posts = posts.concat(result.posts);
 			});
 		},
-		hasNextPage: function(has) {
-			if (typeof has !== 'undefined') {
-				hasNextPage = has;
+		hasNextPage: function(hasMore) {
+			if (typeof hasMore !== 'undefined') {
+				hasNextPage = hasMore;
 			}
 
 			return hasNextPage;
@@ -67,6 +61,15 @@ angular.module('starter.services', ['ngResource'])
 		},
 		getPosts: function() {
 			return posts;
+		},
+		getPost: function(post_id) {
+			for(var i = 0, len = posts.length; i < len; i++) {
+				if (posts[i]._id == post_id) {
+					return posts[i];
+				}
+			}
+
+			return null;
 		}
 	};
 });

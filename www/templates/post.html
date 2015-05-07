@@ -1,0 +1,41 @@
+<ion-view view-title="{{post.title}}">
+    <ion-content id="{{post._id}}" class="post">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="item item-image">
+            <img ng-src="{{post.cover.image_url}}!380x">
+
+        </div>
+        <div class="item">
+            <h2>{{post.title}}</h2>
+        </div>
+        <div class="item item-avatar">
+            <img ng-src="{{post.user.logo_url}}">
+            <h2>{{post.user.name}}</h2>
+            <p>{{post.user.location}} · 婚庆策划</p>
+          </div>
+        <div class="item">
+            <p>婚礼日期：2014-5-1</p>
+            <p>婚礼地点：{{post.place}}</p>
+            <p>布置费用：38000</p>
+            <p>{{post.styles}},{{post.envs}},{{post.colors}}</p>
+        </div>
+        <div class="item">
+            <p class="description">{{post.description}}</p>
+        </div>
+        <div class="item item-image" ng-repeat="pic in post.pics">
+            <img ng-src="{{pic.image_url}}!380x">
+        </div>
+         <div class="item">
+            <p class="description">{{post.description}}</p>
+        </div>
+        <div class="item">
+            <p>婚庆布置：武汉唯爱唯诺婚礼会所</p>
+            <p>化妆造型：李群造型</p>
+            <p>婚礼摄影：肖亮、王宁</p>
+            <p>婚礼摄像：柏林印象</p>
+            <p>婚礼主持：涂俊宇、刘露露</p>
+            <p>婚礼花艺：小黄</p>
+      </div>
+    </ion-content>
+    
+</ion-view>
