@@ -29,7 +29,7 @@ angular.module('starter.services', ['ngResource'])
 			category: category,
 			page: page
 		}, function(result){
-			$log.debug('get posts category: ', category, 'page:', page, 'data:', result.data);
+			$log.debug('get posts category: ', category, 'page:', page, 'data:', result.posts);
 
 			return callback & callback(result);
 		});
@@ -40,17 +40,17 @@ angular.module('starter.services', ['ngResource'])
 			return getPosts(category, 1, function(result){
 				nextPage = 2;
 				hasNextPage = true;
-				posts = result.data;
+				posts = result.posts;
 			})
 		},
 		pagination: function() {
 			return getPosts(category, nextPage, function(result){
 				if (result.posts.length < 10) {
-					$log.debug(' data length', result.posts.length);
+					$log.debug('data length', result.posts.length);
 					hasNextPage = false;
 				}
 				nextPage++;
-				posts = posts.concat(result.items);
+				posts = posts.concat(result.posts);
 			});
 		},
 		hasNextPage: function(has) {

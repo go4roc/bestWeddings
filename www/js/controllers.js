@@ -47,6 +47,13 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
+.controller('BrowseCtrl', function($scope, $stateParams, $log) {
+     $scope.loadMore = function() {
+        $log.debug('load more');
+    }
+})
+
+
 .controller('FeaturedCtrl', function($scope, $rootScope, $stateParams, $timeout, $log, Posts) {
     $log.debug('Featured Ctrl', $stateParams);
 
@@ -78,7 +85,7 @@ angular.module('starter.controllers', [])
 
             $scope.posts = $scope.posts.concat(result.posts);
         }).finally(function(){
-            $scope.$broadcast('scroll.infinieScrollComplet');
+            //$scope.$broadcast('scroll.infinieScrollComplet');
         });
     }
 
