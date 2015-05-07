@@ -27,7 +27,6 @@ angular.module('starter.services', ['ngResource'])
 			page: page
 		}, function(result){
 			$log.debug('get posts result:', result);
-
 			return callback & callback(result);
 		});
 	};
