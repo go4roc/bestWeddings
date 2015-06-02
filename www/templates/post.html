@@ -17,7 +17,9 @@
             <p>婚礼日期：2014-5-1</p>
             <p>婚礼地点：{{post.place}}</p>
             <p>布置费用：38000</p>
-            <p>{{post.styles}},{{post.envs}},{{post.colors}}</p>
+            <p>婚礼风格：{{post.styles.join('，')}}</p>
+            <p>婚礼环境：{{post.envs.join('，')}}</p>
+            <p>婚礼色彩：{{post.colors.join('，')}}</p>
         </div>
         <div class="item">
             <p class="description">{{post.description}}</p>
